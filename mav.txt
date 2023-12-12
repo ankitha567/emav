@@ -1,0 +1,137 @@
+student.java
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="t1")
+public class student {
+@Id
+@Column(name="id")
+private int id;
+
+@Column(name="name")
+private String sname;
+
+@Column(name = "sem")
+private int sem;
+
+public int getId() {
+return id;
+}
+
+public void setId(int id) {
+this.id = id;
+}
+
+public String getSname() {
+return sname;
+}
+
+public void setSname(String sname) {
+this.sname = sname;
+}
+
+public int getSem() {
+return sem;
+}
+
+public void setSem(int sem) {
+this.sem = sem;
+}
+}
+
+
+app.java
+import java.util.Scanner;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class App {
+public static void main(String[] args) {
+Configuration con = new Configuration().configure().addAnnotatedClass(student.class);
+SessionFactory sf = con.buildSessionFactory();
+Scanner scan = new Scanner(System.in);
+student obj = new student();
+while (true) {
+System.out.println("Enter 1 for Insertion, 2 for Deletion, and 3 to Exit");
+int choice = Integer.parseInt(scan.next());
+if (choice == 1) {
+Session s = sf.openSession();
+Transaction tx = s.beginTransaction();
+System.out.println("Enter the StudentID, StudentName, and Sem (e.g., 1 shreya 2):");
+int studentId = Integer.parseInt(scan.next());
+String studentName = scan.next();
+int sem = Integer.parseInt(scan.next());
+obj.setId(studentId);
+obj.setSname(studentName);
+obj.setSem(sem);
+s.save(obj);
+tx.commit();
+s.close();
+} else if (choice == 2) {
+Session s = sf.openSession();
+Transaction tx = s.beginTransaction();
+System.out.println("Enter StudentId for deleting:");
+int studentId = Integer.parseInt(scan.next());
+obj = (student) s.get(student.class, studentId);
+if (obj != null) {
+s.delete(obj);
+tx.commit();
+System.out.println("Student record deleted successfully.");
+} else {
+System.out.println("Student with ID " + studentId + " not found.");
+}
+s.close();
+} else if (choice == 3) {
+break; // Exit the loop
+} else {
+System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+}
+}
+scan.close();
+}
+}
+
+pom.xml
+
+
+<dependency>
+<groupId>org.hibernate.javax.persistence</groupId>
+<artifactId>hibernate-jpa-2.1-api</artifactId>
+<version>1.0.2.Final</version>
+</dependency>
+
+<dependency>
+<groupId>org.hibernate</groupId>
+<artifactId>hibernate-core</artifactId>
+<version>5.6.14.Final</version>
+</dependency>
+<dependency>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
+<version>5.1.49</version>
+</dependency>
+
+hibernet.cfg.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+<!-- Database connection settings -->
+<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/student</property>
+<property name="hibernate.connection.username">root</property>
+<property name="hibernate.connection.password">root</property>
+<property name="hbm2ddl.auto">update</property>
+</session-factory>
+</hibernate-configuration>
+
+ 	ReplyForward
+
