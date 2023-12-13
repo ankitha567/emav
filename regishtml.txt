@@ -1,3 +1,39 @@
+table {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: bold;
+  background: linear-gradient(0deg, rgba(3, 37, 43, 0.311) 0%, rgba(1, 33, 30, 0.543)6%);
+  background-attachment: fixed;
+  border-collapse: collapse;
+  border: 2px solid rgb(190, 190, 204) height
+}
+
+table.inner {
+  border: 0px
+}
+
+input {
+  padding: 2px;
+  margin: 2px;
+}
+
+body {
+  background-image: url('x.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h3 {
+  font-family: Sans-serif;
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
