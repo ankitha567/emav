@@ -235,3 +235,27 @@ h3 {
 </table>
 </html>
 <!-- partial -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgba(199, 103, 39, 0.411);
+        }
+    </style>
+</head>
+
+<body>
+
+    <center><img src="tick.gif" alt="" width="400px" height="400px">
+        <h1 style="color: #2ecc71;">Thank You !</h1>
+        <h3 style="color: blueviolet;">Your form has been successfully submitted</h3>
+        <h3><a style="color: blueviolet;" href="./index.html">Go Back</a></h3>
+    </center>
+</body>
+
+</html>
